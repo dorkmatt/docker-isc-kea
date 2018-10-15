@@ -27,9 +27,9 @@ RUN apk --update upgrade && \
             tar xf /usr/src/kea-premium-*.tar.gz && \
             autoreconf -i ; \
         fi && \
-        ./configure --enable-shell \
-            --with-mysql=/usr/bin/mysql_config \
-            --with-pgsql=/usr/bin/pg_config && \
+        ./configure --enable-shell && \
+#            --with-mysql=/usr/bin/mysql_config \
+#            --with-pgsql=/usr/bin/pg_config && \
         make -j$(nproc) && \
         make install-strip \
     ) && \
@@ -41,7 +41,7 @@ LABEL maintainer="https://keybase.io/tcely"
 RUN apk --update upgrade && \
     apk add bash ca-certificates curl less man procps \
         boost bzip2 libressl sqlite zlib \
-        mariadb-client postgresql-libs python3 && \
+        mysql-client postgresql-libs python3 && \
     rm -rf /var/cache/apk/*
 
 ENV PAGER less
